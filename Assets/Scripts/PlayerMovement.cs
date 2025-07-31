@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
             if(IsGrounded())
             {
                 rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-                Debug.Log("Jump performed");
             }
            
         }
@@ -49,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 // If the jump is canceled while moving upwards, reset the vertical velocity
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0.5f);
-                Debug.Log("Jump canceled");
             }
             
         }

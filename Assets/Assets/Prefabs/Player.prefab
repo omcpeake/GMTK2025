@@ -458,7 +458,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 7843092802400759480}
-  groundCheckSize: {x: 0.5, y: 0.1}
+  groundCheckSize: {x: 1.2, y: 0.1}
 --- !u!114 &7783278191268137044
 MonoBehaviour:
   m_ObjectHideFlags: 0

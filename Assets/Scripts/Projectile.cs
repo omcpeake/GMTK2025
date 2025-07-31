@@ -4,15 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))] // Ensure the GameObject has a Collider2D component
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb; // Rigidbody component for physics interactions
-    [SerializeField] private float damage = 10f; // Initial direction of the projectile
-    [SerializeField] private float speed = 10f; // Speed of the projectile
-    [SerializeField] private float lifetime = 5f; // Lifetime of the projectile in seconds
-    [SerializeField] private AudioClip hitSound; // Sound to play when the projectile hits something
-    [SerializeField] private AudioSource audioSource; // Audio source to play the sound
+    [SerializeField] protected Rigidbody2D rb; // Rigidbody component for physics interactions
+    [SerializeField] protected float damage = 10f; // Initial direction of the projectile
+    [SerializeField] protected float speed = 10f; // Speed of the projectile
+    [SerializeField] protected float lifetime = 5f; // Lifetime of the projectile in seconds
+    [SerializeField] protected AudioClip hitSound; // Sound to play when the projectile hits something
+    [SerializeField] protected AudioSource audioSource; // Audio source to play the sound
 
 
-    private GameObject parent;
+    protected GameObject owner;
 
 
     private void Start()
@@ -37,9 +37,9 @@ public class Projectile : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    virtual protected void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject == parent) //if projectile collides with parent ignore it
+        if(collision.gameObject == owner) //if projectile collides with parent ignore it
              return;
 
         if (collision.gameObject.TryGetComponent(out HealthSystem healthSystem))
@@ -58,10 +58,12 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetParent(GameObject parent)
+    public void SetOwner(GameObject owner)
     {
-        this.parent = parent;
+        this.owner = owner;
     }
+
+    
 
 
 }

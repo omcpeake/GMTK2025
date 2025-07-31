@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e87cd64aff0684085c836a8485d11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 3052429304693919056}
   damage: 10
-  speed: 10
+  speed: 20
   lifetime: 5
   hitSound: {fileID: 0}
   audioSource: {fileID: 0}
-  rb: {fileID: 3052429304693919056}

@@ -22,11 +22,23 @@ public class ProjectileWeapon : MonoBehaviour
     private void Fire()
     {   
         // Instantiate the projectile at the fire point
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectileGameObject = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Projectile projectile = projectileGameObject.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            // Set the parent of the projectile to this weapon for organization
+            projectile.SetOwner(gameObject);
+
+        }
+        else
+        {
+            Debug.LogError("Projectile component not found on the projectile prefab.");
+        }
 
         // Play the firing sound
         if (audioSource != null && fireSound != null)
         {
+            audioSource.pitch = Random.Range(0.9f, 1.1f); // Randomize pitch for variation
             audioSource.PlayOneShot(fireSound);
         }
         // Update the next fire time
