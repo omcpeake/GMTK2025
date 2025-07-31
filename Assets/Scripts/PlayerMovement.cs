@@ -28,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
     
     public void Move(InputAction.CallbackContext context)
     {
-        horizontalInput = context.ReadValue<Vector2>().x;
-        Debug.Log(horizontalInput);
+        /*horizontalInput = context.ReadValue<Vector2>().x;
+        Debug.Log(horizontalInput);*/
     }
 
     public void Jump(InputAction.CallbackContext context)

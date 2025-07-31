@@ -20,6 +20,6 @@ public class RingController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         horizontalInput = context.ReadValue<Vector2>().x;
-        Debug.Log($"ring Input: {horizontalInput}");
+        //Debug.Log($"ring Input: {horizontalInput}");
     }
 }
