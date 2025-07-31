@@ -11,7 +11,7 @@ public class LoopCounter : MonoBehaviour
     private int nextExpectedGate = 0;
     private int previousGate = 99;
 
-    private bool goingInReverse = false;
+
     private bool goingForwards = false;
 
     [SerializeField] private TextMeshProUGUI loopCountText;
@@ -27,22 +27,16 @@ public class LoopCounter : MonoBehaviour
         if (currentGate == nextExpectedGate) //player moving forwards
         {
             goingForwards = true;
-            goingInReverse = false;
+
 
             if (currentGate == lastGateNum)
                 nextExpectedGate = 0;
             else
                 nextExpectedGate++;
         }
-        else if(currentGate == previousGate)// player at the same gate
-        {
-            goingForwards = false;
-            goingInReverse = false;
-        }
         else // player moving backwards
         {
             goingForwards = false;
-            goingInReverse = true;
 
         }
 
