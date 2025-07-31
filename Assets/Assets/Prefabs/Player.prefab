@@ -174,6 +174,7 @@ Transform:
   m_Children:
   - {fileID: 6409238142672780383}
   - {fileID: 7843092802400759480}
+  - {fileID: 5774612765301950834}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4648237506988523348
@@ -366,10 +367,6 @@ MonoBehaviour:
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 27c5f898-bc57-4ee1-8800-db469aca5fe3
-    m_ActionName: 'Player/Crouch[/Keyboard/c]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4259327449808807597}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
@@ -393,10 +390,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
-    m_ActionName: 'Player/Sprint[/Keyboard/leftShift]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
@@ -437,6 +430,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 33a6b6c5-8163-428c-853f-cecfdbcca6a5
+    m_ActionName: 'Player/Look[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -506,3 +503,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 866059287543650686}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7986844316762169283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5774612765301950834}
+  - component: {fileID: 5855146705729579625}
+  m_Layer: 0
+  m_Name: GunHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5774612765301950834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986844316762169283}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 866059287543650686}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5855146705729579625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986844316762169283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c16d87b9856cb4781a427b69d430ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2470280259950241214}
