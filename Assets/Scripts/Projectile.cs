@@ -15,7 +15,10 @@ public class Projectile : MonoBehaviour
     private GameObject parent;
 
 
-
+    private void Start()
+    {
+        transform.parent = null; // Ensure the projectile is not a child of any other object
+    }
 
 
     // Update is called once per frame
@@ -38,7 +41,6 @@ public class Projectile : MonoBehaviour
     {
         if(collision.gameObject == parent) //if projectile collides with parent ignore it
              return;
-        Debug.Log("Projectile hit: " + collision.gameObject.name);
 
         if (collision.gameObject.TryGetComponent(out HealthSystem healthSystem))
         {

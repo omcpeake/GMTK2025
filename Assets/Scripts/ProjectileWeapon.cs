@@ -31,7 +31,6 @@ public class ProjectileWeapon : MonoBehaviour
         }
         // Update the next fire time
         nextFireTime = Time.time + fireRate;
-        Debug.Log("Firing projectile from: " + firePoint.position);
     }
     
 }
