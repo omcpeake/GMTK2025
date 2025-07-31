@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))] // Ensure the GameObject has a Rigidbody2D component
+//[RequireComponent(typeof(Rigidbody2D))] // Ensure the GameObject has a Rigidbody2D component
 [RequireComponent(typeof(Collider2D))] // Ensure the GameObject has a Collider2D component
 public class Projectile : MonoBehaviour
 {
@@ -25,10 +25,11 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         // Move the projectile in the specified direction
-        if (rb != null)
+        /*if (rb != null)
         {
             rb.linearVelocity = transform.right * speed;
-        }
+        }*/
+        gameObject.transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
         /*// Destroy the projectile after its lifetime has elapsed
         if (Time.time - creationTime > lifetime)
         {
@@ -40,7 +41,7 @@ public class Projectile : MonoBehaviour
     virtual protected void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if(collision.gameObject == owner) //if projectile collides with parent ignore it
+        if(collision.gameObject == owner || collision.gameObject.tag == "Projectile") //if projectile collides with parent ignore it
              return;
 
         if (collision.gameObject.TryGetComponent(out HealthSystem healthSystem))

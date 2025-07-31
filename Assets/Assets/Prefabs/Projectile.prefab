@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1712375163993090654}
   - component: {fileID: 3515292267814934564}
   - component: {fileID: 5989995940725878066}
-  - component: {fileID: 3052429304693919056}
   - component: {fileID: 7952508014964874723}
+  - component: {fileID: 3180038578708754450}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!50 &3052429304693919056
+--- !u!114 &7952508014964874723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605344304120640760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e87cd64aff0684085c836a8485d11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  damage: 10
+  speed: 20
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!50 &3180038578708754450
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -151,23 +171,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &7952508014964874723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605344304120640760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e87cd64aff0684085c836a8485d11e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 3052429304693919056}
-  damage: 10
-  speed: 20
-  lifetime: 5
-  hitSound: {fileID: 0}
-  audioSource: {fileID: 0}

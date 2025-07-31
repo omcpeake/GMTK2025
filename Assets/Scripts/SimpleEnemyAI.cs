@@ -31,6 +31,10 @@ public class SimpleEnemyAI : MonoBehaviour
             {
                 healthSystem.TakeDamage(10f); // Deal 10 damage to the player
             }
+            // Destroy the enemy after dealing damage
+            //Destroy(gameObject);
+            //knock the player back
+            Vector2 knockbackDirection = (collision.transform.position - transform.position).normalized;
         }
     }
 }

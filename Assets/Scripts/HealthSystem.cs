@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100;
+    [SerializeField] private TextMeshProUGUI healthText; // Reference to the UI text element for displaying health
+    [SerializeField] private float invincibilityDuration = 1f; // Duration of invincibility after taking damage
     private float currentHealth;
     private bool isAlive = true;
 
@@ -14,8 +17,11 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        if(gameObject.tag == "Player")
+        {
+            UpdateUI();
+        }
 
-        UpdateUI();
     }
 
     public void ResetHealth()
@@ -37,8 +43,13 @@ public class HealthSystem : MonoBehaviour
             Die();
         }
 
+        if(gameObject.tag == "Player")
+        {
+            UpdateUI();
+        }
 
-        UpdateUI();
+        HandleInvincibility(invincibilityDuration); // Example duration for invincibility after taking damage
+
     }
 
     public void Die()
@@ -49,7 +60,11 @@ public class HealthSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+        if(gameObject.tag == "Player")
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
     public void RestoreHealth(float health)
@@ -65,7 +80,8 @@ public class HealthSystem : MonoBehaviour
 
     private void UpdateUI()
     {
-        
+        healthText.SetText(currentHealth.ToString());
+        healthText.color = Color.Lerp(Color.red, Color.white, currentHealth / maxHealth);
     }
 
     public bool IsAlive()

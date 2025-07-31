@@ -112,13 +112,22 @@ public class LoopCounter : MonoBehaviour
             }
         }
 
-        else if (currentLoop > 9)
+        else if (currentLoop == 9)
         {
             foreach (Transform spawnPoint in spawnPoints)
             {
-                int randomEnemyType = Random.Range(0, 2); // Randomly choose between simple and projectile enemy
-                GameObject Enemy = randomEnemyType == 0 ? simpleEnemy : this.projectileEnemy;
-                Enemy.transform.parent = transform;
+                int randomEnemyType = Random.Range(0, 1); // Randomly choose between simple and projectile enemy
+                if(randomEnemyType == 0)
+                {
+                    GameObject Enemy = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
+                    Enemy.transform.parent = transform;
+                }
+                else
+                {
+                    GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
+                    Enemy.transform.parent = transform;
+                }
+                
             }
         }
 
