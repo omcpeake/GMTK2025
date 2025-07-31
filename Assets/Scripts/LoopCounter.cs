@@ -83,17 +83,57 @@ public class LoopCounter : MonoBehaviour
 
         }
 
+        else if (currentLoop == 5)
+        {
+            //spawn a projectile enemy at every spawn point
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
+                Enemy.transform.parent = transform;
+            }
+        }
 
+        else if (currentLoop == 7) // spawn a simple enemy at every spawn point
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                GameObject Enemy = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
+                Enemy.transform.parent = transform;
+            }
+        }
+        else if (currentLoop == 8) // spawn a projectile and simple enemy at every spawn point
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
+                Enemy.transform.parent = transform;
+                GameObject Enemy2 = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
+                Enemy2.transform.parent = transform;
+            }
+        }
 
+        else if (currentLoop > 9)
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                int randomEnemyType = Random.Range(0, 2); // Randomly choose between simple and projectile enemy
+                GameObject Enemy = randomEnemyType == 0 ? simpleEnemy : this.projectileEnemy;
+                Enemy.transform.parent = transform;
+            }
+        }
 
-
+        else if (currentLoop == 10) // spawn a boss enemy at the boss spawn point
+        {
+            GameObject Enemy = Instantiate(bossEnemy, bossSpawnPoint.position, bossSpawnPoint.rotation);
+            Enemy.transform.parent = transform;
+        }
 
 
         //constant spawns
-        if (currentLoop % 2 == 0 && currentLoop !=2) // spawn 2 simple enemies any time the current loop is even except the first loop
+        if (currentLoop % 2 == 0 && currentLoop != 2) // spawn 2 simple enemies any time the current loop is even except the first loop
         {
-            Transform spawnPoint1 = spawnPoints[Random.Range(0, spawnPoints.Length/2)];
-            Transform spawnPoint2 = spawnPoints[Random.Range(spawnPoints.Length/2, spawnPoints.Length)];
+            Transform spawnPoint1 = spawnPoints[Random.Range(0, spawnPoints.Length / 2)];
+            Transform spawnPoint2 = spawnPoints[Random.Range(spawnPoints.Length / 2, spawnPoints.Length)];
 
             //Spawn more enemies or different types based on the loop count
             GameObject Enemy1 = Instantiate(simpleEnemy, spawnPoint1.position, spawnPoint1.rotation);
@@ -103,6 +143,12 @@ public class LoopCounter : MonoBehaviour
             Enemy2.transform.parent = transform;
             // Add more enemy spawning logic here if needed
 
+        }
+        if (currentLoop % 3 == 0) // spawn a projectile enemy every 3 loops
+        {
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
+            Enemy.transform.parent = transform;
         }
 
     }

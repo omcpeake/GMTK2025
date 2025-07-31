@@ -7,13 +7,13 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected Rigidbody2D rb; // Rigidbody component for physics interactions
     [SerializeField] protected float damage = 10f; // Initial direction of the projectile
     [SerializeField] protected float speed = 10f; // Speed of the projectile
-    [SerializeField] protected float lifetime = 5f; // Lifetime of the projectile in seconds
+    //[SerializeField] protected float lifetime = 5f; // Lifetime of the projectile in seconds
     [SerializeField] protected AudioClip hitSound; // Sound to play when the projectile hits something
     [SerializeField] protected AudioSource audioSource; // Audio source to play the sound
-
+    [SerializeField] protected LayerMask EnemyLayer; // Layer mask to identify enemy layers
 
     protected GameObject owner;
-
+    protected bool ownedByPlayer = false;
 
     private void Start()
     {
@@ -39,13 +39,22 @@ public class Projectile : MonoBehaviour
 
     virtual protected void OnCollisionEnter2D(Collision2D collision)
     {
+
         if(collision.gameObject == owner) //if projectile collides with parent ignore it
              return;
 
         if (collision.gameObject.TryGetComponent(out HealthSystem healthSystem))
         {
-            // If the projectile hits an object with a HealthSystem, apply damage
-            healthSystem.TakeDamage(damage); // Example damage value
+            if(collision.gameObject.layer == EnemyLayer && ownedByPlayer == false)
+            {
+                Debug.Log("enemy projectile hit another enemy: " + collision.gameObject.name);
+            }
+            else
+            {
+                // If the projectile hits an object with a HealthSystem, apply damage
+                healthSystem.TakeDamage(damage); // Example damage value
+            }
+                
         }
 
         // Play the hit sound if it is set
@@ -54,6 +63,13 @@ public class Projectile : MonoBehaviour
             audioSource.PlayOneShot(hitSound);
             
         }
+
+        PostCollision(collision); // Call the PostCollision method for additional behavior
+
+    }
+
+    virtual protected void PostCollision(Collision2D collision)
+    {
         // Destroy the projectile on collision
         Destroy(gameObject);
     }
@@ -63,7 +79,14 @@ public class Projectile : MonoBehaviour
         this.owner = owner;
     }
 
-    
+    public void SetOwnedByPlayer(bool ownedByPlayer)
+    {
+        this.ownedByPlayer = ownedByPlayer;
+    }
 
+    protected bool CheckiftargetIsEnemy(Collision2D collision)
+    {
+        return (collision.gameObject.layer == 6 && ownedByPlayer == false);
+    }
 
 }

@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float speed = 5f;
     [Header("Jumping")]
     [SerializeField] private float jumpForce = 10f;
     [Header("GroundCheck")]
@@ -12,25 +11,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.1f);
 
 
-    private float horizontalInput;
+    //private float horizontalInput;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+/*    // Update is called once per frame
     void Update()
     {
         //rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocity.y);
-    }
+    }*/
     
-    public void Move(InputAction.CallbackContext context)
+/*    public void Move(InputAction.CallbackContext context)
     {
-        /*horizontalInput = context.ReadValue<Vector2>().x;
-        Debug.Log(horizontalInput);*/
-    }
+        *//*horizontalInput = context.ReadValue<Vector2>().x;
+        Debug.Log(horizontalInput);*//*
+    }*/
 
     public void Jump(InputAction.CallbackContext context)
     {

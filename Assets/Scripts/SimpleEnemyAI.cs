@@ -8,14 +8,16 @@ public class SimpleEnemyAI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
+    private void Start()
+    {
+        speed = Random.Range(speed * 0.8f, speed * 1.2f); // Randomize speed
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         // always move left and stick to the ground
-        transform.Translate(new Vector2(-speed, -1) * Time.deltaTime);
-
-
-
+        transform.Translate(new Vector2(-speed, -2) * Time.deltaTime);
 
     }
 

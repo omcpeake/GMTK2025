@@ -3,6 +3,7 @@ using UnityEngine;
 public class ProjectileWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab; // Prefab for the projectile
+    [SerializeField] private bool autoFire = true; // Whether the weapon should fire automatically
     [SerializeField] private Transform firePoint; // Point from where the projectile will be fired
     [SerializeField] private float fireRate = 1f; // Rate of fire in seconds
     private float nextFireTime = 0f; // Time when the next projectile can be fired
@@ -13,13 +14,13 @@ public class ProjectileWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        if (Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime && autoFire)
         {
             Fire();
         }
     }
 
-    private void Fire()
+    public void Fire()
     {   
         // Instantiate the projectile at the fire point
         GameObject projectileGameObject = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -28,6 +29,12 @@ public class ProjectileWeapon : MonoBehaviour
         {
             // Set the parent of the projectile to this weapon for organization
             projectile.SetOwner(gameObject);
+            if (gameObject.tag == "Player")
+            {
+                projectile.SetOwnedByPlayer(true);
+            }
+                
+
 
         }
         else

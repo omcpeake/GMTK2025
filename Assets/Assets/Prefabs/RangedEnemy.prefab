@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78edbe04b418a65438345d08e065ba43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   rb: {fileID: 6083720230827086701}
 --- !u!114 &7791362060627379235
 MonoBehaviour:
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 437091640342474607, guid: b61a2aa88e4670c4cad326197f7faedc, type: 3}
+  autoFire: 1
   firePoint: {fileID: 4166479009433375248}
   fireRate: 3
   fireSound: {fileID: 0}
@@ -240,4 +241,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c0bad0a69bbd944b093bc91547f6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
