@@ -32,6 +32,7 @@ public class ProjectileWeapon : MonoBehaviour
             if (gameObject.tag == "Player")
             {
                 projectile.SetOwnedByPlayer(true);
+                Debug.Log("Player fired a projectile: " + projectileGameObject.name);
             }
                 
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166479009433375248}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ProjectileOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: 2867146085179311529}
   - component: {fileID: 7791362060627379235}
   - component: {fileID: -2503771494371562657}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RangedEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1605344304120640760, guid: d2ff02cf114a96543a722a692672182f, type: 3}
   autoFire: 1
   firePoint: {fileID: 4166479009433375248}
-  fireRate: 3
+  fireRate: 2
   fireSound: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!114 &-2503771494371562657
@@ -242,3 +242,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  healthText: {fileID: 0}
+  invincibilityDuration: 0

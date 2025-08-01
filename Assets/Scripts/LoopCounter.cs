@@ -8,6 +8,7 @@ public class LoopCounter : MonoBehaviour
     [Header("Gates")]
     [SerializeField] int lastGateNum = 2;
     private int currentLoop = 0;
+    private int currentLoopWhenLastGateReached = -1; // Used to track the loop count when the last gate is reached
     private int currentGate = 0;
     private int nextExpectedGate = 0;
     //private int previousGate = 99;
@@ -55,7 +56,12 @@ public class LoopCounter : MonoBehaviour
                 currentLoop++;
 
             UpdateUI();
-            SpawnEnemies(currentLoop);
+            if(currentLoop > currentLoopWhenLastGateReached)
+            {
+                // If the player has reached a new loop, spawn enemies
+                SpawnEnemies(currentLoop);
+            }
+            currentLoopWhenLastGateReached = currentLoop; // Update the loop count when the last gate is reached
         }
 
         Debug.Log($"Player has entered gate {currentGate}. Next expected gate is {nextExpectedGate}.");

@@ -41,12 +41,12 @@ public class Projectile : MonoBehaviour
     virtual protected void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if(collision.gameObject == owner || collision.gameObject.tag == "Projectile") //if projectile collides with parent ignore it
-             return;
+        if(collision.gameObject.tag == "Projectile") //if projectile collides with another projectile, ignore
+            return;
 
         if (collision.gameObject.TryGetComponent(out HealthSystem healthSystem))
         {
-            if(collision.gameObject.layer == EnemyLayer && ownedByPlayer == false)
+            if(collision.gameObject.tag == "Enemy" && ownedByPlayer == false)
             {
                 Debug.Log("enemy projectile hit another enemy: " + collision.gameObject.name);
             }
@@ -54,6 +54,7 @@ public class Projectile : MonoBehaviour
             {
                 // If the projectile hits an object with a HealthSystem, apply damage
                 healthSystem.TakeDamage(damage); // Example damage value
+                Debug.Log("Projectile hit: " + collision.gameObject.name + " with damage: " + damage);
             }
                 
         }

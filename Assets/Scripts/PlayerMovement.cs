@@ -10,14 +10,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.1f);
 
+    private float clampX;
+
 
     //private float horizontalInput;
 
-/*    // Update is called once per frame
+    private void Start()
+    {
+        clampX = transform.position.x;
+    }
+
+    // Update is called once per frame
     void Update()
     {
         //rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocity.y);
-    }*/
+        rb.transform.position = new Vector2 (clampX, rb.transform.position.y);
+    }
     
 /*    public void Move(InputAction.CallbackContext context)
     {
