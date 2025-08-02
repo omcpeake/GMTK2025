@@ -21,6 +21,10 @@ public class LoopCounter : MonoBehaviour
     [SerializeField] Transform bossSpawnPoint;
     [SerializeField] GameObject bossEnemy;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip gateEnterSound;
+
 
     private bool goingForwards = false;
 
@@ -61,6 +65,7 @@ public class LoopCounter : MonoBehaviour
             {
                 // If the player has reached a new loop, spawn enemies
                 SpawnEnemies(currentLoop);
+                audioSource.PlayOneShot(gateEnterSound); // Play the gate enter sound
             }
             currentLoopWhenLastGateReached = currentLoop; // Update the loop count when the last gate is reached
         }
