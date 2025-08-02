@@ -4,6 +4,9 @@ using UnityEngine;
 public class GameOverSCreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI gameOverText; // Reference to the TextMeshProUGUI component for displaying game over text
+    [SerializeField] private AudioSource audioSource; // Audio source to play sounds
+    [SerializeField] private AudioClip gameOverSound; // Sound to play when the game is over
+    [SerializeField] private AudioClip victorySound; // Sound to play when the player wins
 
     private void Start()
     {
@@ -50,11 +53,13 @@ public class GameOverSCreen : MonoBehaviour
     {
         gameOverText.SetText("Game Over!"); // Set the game over text
         gameObject.SetActive(true); // Show the game over screen
+        audioSource.PlayOneShot(gameOverSound); // Play the game over sound
     }
 
     public void Victory()
     {
         gameOverText.SetText("You Win!"); // Set the victory text
         gameObject.SetActive(true); // Show the game over screen
+        audioSource.PlayOneShot(victorySound); // Play the victory sound
     }
 }

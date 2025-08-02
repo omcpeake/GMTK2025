@@ -87,7 +87,6 @@ public class LoopCounter : MonoBehaviour
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
             //Spawn enemies at the spawn point
-
             GameObject Enemy = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
             Enemy.transform.parent = transform;
 
@@ -123,22 +122,12 @@ public class LoopCounter : MonoBehaviour
                 Enemy.transform.parent = transform;
             }
         }
-        else if (currentLoop == 8) // spawn a projectile and simple enemy at every spawn point
-        {
-            foreach (Transform spawnPoint in spawnPoints)
-            {
-                GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
-                Enemy.transform.parent = transform;
-                GameObject Enemy2 = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
-                Enemy2.transform.parent = transform;
-            }
-        }
 
-        else if (currentLoop == 9)
+        else if (currentLoop == 8)
         {
             foreach (Transform spawnPoint in spawnPoints)
             {
-                int randomEnemyType = Random.Range(0, 2); // Randomly choose between simple and projectile enemy
+                int randomEnemyType = Random.Range(0, 2); // Randomly choose between enemies
                 if(randomEnemyType == 0)
                 {
                     GameObject Enemy = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
@@ -156,6 +145,20 @@ public class LoopCounter : MonoBehaviour
                 }
                 
             }
+        }
+        else if (currentLoop == 9) // spawn a projectile and simple enemy at every spawn point and a fast enemy at a random spawn point
+        {
+            foreach (Transform spawnPoint in spawnPoints)
+            {
+                GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
+                Enemy.transform.parent = transform;
+                GameObject Enemy2 = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
+                Enemy2.transform.parent = transform;
+            }
+            //Spawn a fast enemy at a random spawn point
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject fastEnemyInstance = Instantiate(fastEnemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+            fastEnemyInstance.transform.parent = transform;
         }
 
         else if (currentLoop == 10) // spawn a boss enemy at the boss spawn point

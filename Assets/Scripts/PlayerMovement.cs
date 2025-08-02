@@ -5,10 +5,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [Header("Jumping")]
     [SerializeField] private float jumpForce = 10f;
+
     [Header("GroundCheck")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.1f);
+    [SerializeField] private float minYHeight = -30;
 
     private float clampX;
 
@@ -24,7 +26,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocity.y);
-        rb.transform.position = new Vector2 (clampX, rb.transform.position.y);
+        if(rb.transform.position.y < minYHeight)
+            rb.transform.position = new Vector2(clampX, minYHeight + 10);
+        
+        else
+            rb.transform.position = new Vector2(clampX, rb.transform.position.y);
     }
     
 /*    public void Move(InputAction.CallbackContext context)

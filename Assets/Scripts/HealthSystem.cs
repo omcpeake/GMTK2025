@@ -11,6 +11,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float invincibilityDuration = 1f; // Duration of invincibility after taking damage
 
     [Header("Dying")]
+    [SerializeField] private SpriteRenderer sprite; // Reference to the player sprite renderer
     [SerializeField] GameOverSCreen gameOverScreen;
     [SerializeField] private RingController ringController; // Name of the game over scene
     [SerializeField] private PlayerMovement playerMovement; // Reference to the player movement script
@@ -56,13 +57,14 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float incomingDamage)
     {
-        if (cantBeDamaged && isAlive)
+        if (cantBeDamaged || !isAlive)
             return;
 
         currentHealth -= incomingDamage;
+        FlashRed(); // Flash red to indicate damage taken
 
 
-        if(gameObject.tag == "Player")
+        if (gameObject.tag == "Player")
         {
             UpdateUI();
             audioSource.PlayOneShot(hurtSound); // Play hurt sound
@@ -74,12 +76,34 @@ public class HealthSystem : MonoBehaviour
             Die();
         }
         HandleInvincibility(invincibilityDuration); // Example duration for invincibility after taking damage
+        
 
+    }
+
+    private void FlashRed()
+    {
+        Color originalColor = sprite.color; // Store the original color
+        sprite.color = Color.red; // Change sprite color to red
+        StartCoroutine(ResetColorAfterDelay(0.1f, originalColor)); // Reset color after a short delay
+    }
+
+    private IEnumerator ResetColorAfterDelay(float delay, Color originalColor)
+    {
+        yield return new WaitForSeconds(delay);
+        sprite.color = originalColor; // Reset sprite color to white
     }
 
     public void Die()
     {
         isAlive = false;
+
+        //unparent projectiles
+        Projectile[] projectiles = GetComponentsInChildren<Projectile>();
+        foreach (Projectile projectile in projectiles)
+        {
+            projectile.transform.parent = null; // Unparent the projectile
+        }
+
 
         if (gameObject.tag == "Boss") //if boss win game
         {
@@ -95,6 +119,7 @@ public class HealthSystem : MonoBehaviour
             playerMovement.enabled = false; // Disable player movement
             ringController.enabled = false; // Disable ring controller
             projectileWeapon.enabled = false; // Disable projectile weapon
+            sprite.enabled = false; // Hide player sprite
         }
         else //if not the player destroy
         {

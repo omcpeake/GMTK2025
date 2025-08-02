@@ -452,7 +452,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3566356138891083067}
-  speed: 5
   jumpForce: 10
   groundLayer:
     serializedVersion: 2
@@ -472,6 +471,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthText: {fileID: 0}
+  invincibilityDuration: 1
+  sprite: {fileID: 4648237506988523348}
+  gameOverScreen: {fileID: 0}
+  ringController: {fileID: 0}
+  playerMovement: {fileID: 0}
+  projectileWeapon: {fileID: 0}
+  audioSource: {fileID: 0}
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!1 &7175810017553380799
 GameObject:
   m_ObjectHideFlags: 0
