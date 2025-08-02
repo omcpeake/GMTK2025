@@ -5,6 +5,7 @@ public class SimpleEnemyAI : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] bool reverseDirection = false; // If true, the enemy will move right instead of left
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -17,7 +18,10 @@ public class SimpleEnemyAI : MonoBehaviour
     void FixedUpdate()
     {
         // always move left and stick to the ground
-        transform.Translate(new Vector2(-speed, -2) * Time.deltaTime);
+        if(reverseDirection)
+            transform.Translate(new Vector2(speed, -2) * Time.deltaTime);
+        else
+            transform.Translate(new Vector2(-speed, -2) * Time.deltaTime);
 
     }
 

@@ -17,6 +17,7 @@ public class LoopCounter : MonoBehaviour
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] GameObject simpleEnemy;
     [SerializeField] GameObject projectileEnemy;
+    [SerializeField] GameObject fastEnemy;
     [SerializeField] Transform bossSpawnPoint;
     [SerializeField] GameObject bossEnemy;
 
@@ -95,7 +96,19 @@ public class LoopCounter : MonoBehaviour
                 GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
                 Enemy.transform.parent = transform;
             }
+
+            //Spawn a fast enemy at a random spawn point
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject fastEnemyInstance = Instantiate(fastEnemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+            fastEnemyInstance.transform.parent = transform;
         }
+        else if (currentLoop == 6) // spawn a fast enemy at a random spawn point
+        {
+            Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            GameObject fastEnemyInstance = Instantiate(fastEnemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+            fastEnemyInstance.transform.parent = transform;
+        }
+
 
         else if (currentLoop == 7) // spawn a simple enemy at every spawn point
         {
@@ -120,15 +133,20 @@ public class LoopCounter : MonoBehaviour
         {
             foreach (Transform spawnPoint in spawnPoints)
             {
-                int randomEnemyType = Random.Range(0, 1); // Randomly choose between simple and projectile enemy
+                int randomEnemyType = Random.Range(0, 2); // Randomly choose between simple and projectile enemy
                 if(randomEnemyType == 0)
                 {
                     GameObject Enemy = Instantiate(simpleEnemy, spawnPoint.position, spawnPoint.rotation);
                     Enemy.transform.parent = transform;
                 }
-                else
+                else if (randomEnemyType == 1)
                 {
                     GameObject Enemy = Instantiate(projectileEnemy, spawnPoint.position, spawnPoint.rotation);
+                    Enemy.transform.parent = transform;
+                }
+                else
+                {
+                    GameObject Enemy = Instantiate(fastEnemy, spawnPoint.position, spawnPoint.rotation);
                     Enemy.transform.parent = transform;
                 }
                 

@@ -33,7 +33,11 @@ public class ProjectileWeapon : MonoBehaviour
             {
                 projectile.SetOwnedByPlayer(true);
             }
-                
+            else
+            {
+                projectile.transform.parent = transform; 
+            }
+
 
 
         }

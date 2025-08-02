@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        transform.parent = null; // Ensure the projectile is not a child of any other object
+       //Transform.parent = null; // Ensure the projectile is not a child of any other object
     }
 
 
