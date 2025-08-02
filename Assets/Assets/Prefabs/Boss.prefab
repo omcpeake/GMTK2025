@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5465336684284252456}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,6 +173,12 @@ MonoBehaviour:
   maxHealth: 250
   healthText: {fileID: 0}
   invincibilityDuration: 0
+  gameOverScreen: {fileID: 0}
+  ringController: {fileID: 0}
+  playerMovement: {fileID: 0}
+  projectileWeapon: {fileID: 0}
+  audioSource: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &5465336684284252456
 MonoBehaviour:
   m_ObjectHideFlags: 0

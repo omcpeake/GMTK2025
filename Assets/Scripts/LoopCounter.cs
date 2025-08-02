@@ -64,7 +64,6 @@ public class LoopCounter : MonoBehaviour
             currentLoopWhenLastGateReached = currentLoop; // Update the loop count when the last gate is reached
         }
 
-        Debug.Log($"Player has entered gate {currentGate}. Next expected gate is {nextExpectedGate}.");
 
     }
 
@@ -75,7 +74,6 @@ public class LoopCounter : MonoBehaviour
 
     private void SpawnEnemies(int currentLoop)
     {
-        Debug.Log($"Spawning enemies for loop {currentLoop}.");
         //fixed number spawns
         if (currentLoop == 2)
         {

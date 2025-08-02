@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1605344304120640760, guid: d2ff02cf114a96543a722a692672182f, type: 3}
+  autoFire: 1
   firePoint: {fileID: 8128685565678435982}
   fireRate: 1
   fireSound: {fileID: 8300000, guid: 91135ce45894c5a44a96426bb1c88073, type: 3}
@@ -119,7 +120,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
   Loop: 0

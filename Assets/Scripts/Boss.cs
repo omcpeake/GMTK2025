@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -12,6 +13,7 @@ public class Boss : MonoBehaviour
 
     private float timeTillChangeFireMode = 10f; // Time until the fire mode changes
     private const float CHANGE_FIRE_MODE_INTERVAL = 10f; // Interval for changing fire mode
+
 
     enum FireMode
     {
@@ -31,7 +33,11 @@ public class Boss : MonoBehaviour
         {
             fireCooldown = fireCooldownAll; // Set the initial cooldown for all at once fire mode
         }
+
+
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -55,7 +61,7 @@ public class Boss : MonoBehaviour
     }
 
     private void Fire()
-            {
+    {
         // Check the current fire mode and fire accordingly
         if (currentFireMode == FireMode.Single)
         {
@@ -74,13 +80,11 @@ public class Boss : MonoBehaviour
         {
             currentFireMode = FireMode.AllAtOnce; // Switch to firing all at once
             fireCooldown = fireCooldownAll; // Set the cooldown for firing all at once
-            Debug.Log("Switched to All At Once Fire Mode");
         }
         else
         {
             currentFireMode = FireMode.Single; // Switch to firing one at a time
             fireCooldown = fireCooldownSingle; // Set the cooldown for firing one at a time
-            Debug.Log("Switched to Single Fire Mode");
         }
         // Reset the last single weapon fired index when changing modes
         lastSingleWeaponFired = 0;

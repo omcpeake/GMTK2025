@@ -9,10 +9,35 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private TextMeshProUGUI healthText; // Reference to the UI text element for displaying health
     [SerializeField] private float invincibilityDuration = 1f; // Duration of invincibility after taking damage
+
+    [Header("Dying")]
+    [SerializeField] GameOverSCreen gameOverScreen;
+    [SerializeField] private RingController ringController; // Name of the game over scene
+    [SerializeField] private PlayerMovement playerMovement; // Reference to the player movement script
+    [SerializeField] private ProjectileWeapon projectileWeapon; // Reference to the projectile weapon script (if needed for player)
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource; // Audio source to play sounds
+    [SerializeField] private AudioClip hurtSound; // Sound to play when the player takes damage
+    [SerializeField] private AudioClip deathSound; // Sound to play when the player dies
     private float currentHealth;
     private bool isAlive = true;
 
     private bool cantBeDamaged = false;
+
+
+    private void Awake()
+    {
+        if(gameObject.tag == "Player" || gameObject.tag == "Boss")
+        {
+            gameOverScreen = FindFirstObjectByType<GameOverSCreen>(FindObjectsInactive.Include);
+            if (gameOverScreen == null)
+            {
+                Debug.LogError("GameOverSCreen not found in the scene. Please ensure it is present.");
+            }
+        }
+        
+    }
 
     void Start()
     {
@@ -21,8 +46,7 @@ public class HealthSystem : MonoBehaviour
         {
             UpdateUI();
         }
-
-    }
+}
 
     public void ResetHealth()
     {
@@ -37,17 +61,18 @@ public class HealthSystem : MonoBehaviour
 
         currentHealth -= incomingDamage;
 
+
+        if(gameObject.tag == "Player")
+        {
+            UpdateUI();
+            audioSource.PlayOneShot(hurtSound); // Play hurt sound
+        }
+
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             Die();
         }
-
-        if(gameObject.tag == "Player")
-        {
-            UpdateUI();
-        }
-
         HandleInvincibility(invincibilityDuration); // Example duration for invincibility after taking damage
 
     }
@@ -55,14 +80,25 @@ public class HealthSystem : MonoBehaviour
     public void Die()
     {
         isAlive = false;
-        
-        if(gameObject.tag != "Player") //if not the player destroy
+
+        if (gameObject.tag == "Boss") //if boss win game
         {
+            gameOverScreen.Victory();
+            //playerMovement.enabled = false; // Disable player movement
+            //ringController.enabled = false; // Disable ring controller
+            audioSource.PlayOneShot(deathSound); // Play death sound
             Destroy(gameObject);
         }
-        if(gameObject.tag == "Player")
+        else if (gameObject.tag == "Player")
         {
-            gameObject.SetActive(false);
+            gameOverScreen.GameOver();
+            playerMovement.enabled = false; // Disable player movement
+            ringController.enabled = false; // Disable ring controller
+            projectileWeapon.enabled = false; // Disable projectile weapon
+        }
+        else //if not the player destroy
+        {
+            Destroy(gameObject);
         }
 
     }

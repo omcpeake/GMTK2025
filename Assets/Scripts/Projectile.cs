@@ -44,17 +44,18 @@ public class Projectile : MonoBehaviour
         if(collision.gameObject.tag == "Projectile") //if projectile collides with another projectile, ignore
             return;
 
+        
+
         if (collision.gameObject.TryGetComponent(out HealthSystem healthSystem))
         {
-            if(collision.gameObject.tag == "Enemy" && ownedByPlayer == false)
-            {
-                Debug.Log("enemy projectile hit another enemy: " + collision.gameObject.name);
+            if(CheckiftargetIsEnemy(collision) && ownedByPlayer == false)
+            {  
+                return;
             }
             else
             {
                 // If the projectile hits an object with a HealthSystem, apply damage
                 healthSystem.TakeDamage(damage); // Example damage value
-                Debug.Log("Projectile hit: " + collision.gameObject.name + " with damage: " + damage);
             }
                 
         }
@@ -88,7 +89,7 @@ public class Projectile : MonoBehaviour
 
     protected bool CheckiftargetIsEnemy(Collision2D collision)
     {
-        return (collision.gameObject.layer == 6 && ownedByPlayer == false);
+        return collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss";
     }
 
 }

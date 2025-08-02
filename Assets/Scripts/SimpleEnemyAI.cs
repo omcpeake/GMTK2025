@@ -33,8 +33,14 @@ public class SimpleEnemyAI : MonoBehaviour
             }
             // Destroy the enemy after dealing damage
             //Destroy(gameObject);
-            //knock the player back
-            Vector2 knockbackDirection = (collision.transform.position - transform.position).normalized;
+            //knock the player up
+            Vector2 knockupDirection =  Vector2.up * 10f; // Adjust the knockup force as needed
+            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (playerRb != null)
+            {
+                playerRb.AddForce(knockupDirection, ForceMode2D.Impulse); // Apply an impulse force to the player
+            }
+
         }
     }
 }
